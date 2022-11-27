@@ -10,7 +10,6 @@ class doctorsController extends AbstractController
 {
     #[Route('/doctors', name: 'doctors')]
 
-   
 
     public function index(): Response
     { 

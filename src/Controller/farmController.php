@@ -11,7 +11,7 @@ class farmController extends AbstractController
     #[Route('/farm', name: 'farm')]
 
    
-    public function farn(): Response
+    public function index(): Response
     { 
         return $this->render('farm/index.html.twig');
     }
