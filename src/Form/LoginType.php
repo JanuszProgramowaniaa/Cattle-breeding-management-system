@@ -13,8 +13,11 @@ class LoginType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('login', TextType::class)
-            ->add('password', PasswordType::class)
+            ->add('login', TextType::class,[
+                'required' => true
+            ])
+            ->add('password', PasswordType::class,[
+                'required' => true])
             ->add('save', SubmitType::class, array(
                 'label' => 'Zaloguj się',
             ))
