@@ -22,9 +22,11 @@
                 {{ form_label(registrationForm.plainPassword, 'Hasło') }}
                 {{ form_widget(registrationForm.plainPassword ) }}
             </div>
-            <div class="formoutline mb-4 d-flex d-flex justify-content-center gap-2 align-items-center">
-                {{ form_label(registrationForm.agreeTerms, 'Zaakceptuj warunki') }}
-                {{ form_widget(registrationForm.agreeTerms) }}
+            <div class="formoutline mb-4 d-flex justify-content-center">
+                <label class='d-flex'>
+                    {{ form_label(registrationForm.agreeTerms) }}
+                    {{ form_widget(registrationForm.agreeTerms) }}
+                <label>
             </div>
 
 
