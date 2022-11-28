@@ -51,8 +51,8 @@
               Jesteś zalogowany jako {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Wyloguj się</a>
           </div>
         {% else %}
-          <div> <a class="nav-link" href="{{ path('app_login') }}">Zaloguj się</a> </div>
-          <div> <a class="nav-link" href="{{ path('app_register') }}">Zarejestruj się</a> </div>
+          <div> <a class="nav-link btn btn-primary text-white font-weight-bold" href="{{ path('app_login') }}">Zaloguj się</a> </div>
+          <div> <a class="nav-link btn btn-success text-white font-weight-bold" href="{{ path('app_register') }}">Zarejestruj się</a> </div>
         {% endif %}
        
      </div>
