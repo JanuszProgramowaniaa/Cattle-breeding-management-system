@@ -19,8 +19,12 @@
             </div>
 
             <div class="formoutline mb-4 d-flex flex-column align-items-center">
-                {{ form_label(registrationForm.plainPassword, 'Hasło') }}
-                {{ form_widget(registrationForm.plainPassword ) }}
+                {{ form_label(registrationForm.plainPassword.first) }}
+                {{ form_widget(registrationForm.plainPassword.first ) }}
+                {{ form_label(registrationForm.plainPassword.second) }}
+                {{ form_widget(registrationForm.plainPassword.second ) }}
+                <span style="color:red;"> {{form_errors(registrationForm.plainPassword.first)}}</span>
+                
             </div>
             <div class="formoutline mb-4 d-flex justify-content-center">
                 <label class='d-flex'>
