@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+ <div class="container d-flex justify-content-center">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>
+                    Oops!</h1>
+                <h2>
+                    404 Nie znaleziono strony</h2>
+                <div class="error-details">
+                    Przepraszamy, wystąpił błąd, żądana strona nie została znaleziona!
+                </div>
+                <div class="error-actions d-flex gap-5 mt-5">
+                    <a href="{{ path('index') }}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                        Wróć na stronę główną </a><a href="{{ path('index') }}" class="btn btn-secondary btn-lg"><span class="glyphicon glyphicon-envelope"></span> Kontakt ze wsparciem </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
