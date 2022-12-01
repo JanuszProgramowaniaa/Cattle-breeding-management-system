@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Doctor;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * @extends ServiceEntityRepository<Doctor>
@@ -39,6 +40,19 @@ class DoctorRepository extends ServiceEntityRepository
         }
     }
 
+
+    public function getAllDoctors($currentPage = 1, $itemPerPage = 5)
+    {
+        $query = $this->createQueryBuilder('p')
+            ->orderBy('p.name', 'DESC')
+            ->getQuery();
+
+            $paginator = $this->paginate($query, $currentPage, $itemPerPage);
+
+
+        return $query->getResult();
+    }
+
 //    /**
 //     * @return Doctor[] Returns an array of Doctor objects
 //     */
@@ -63,4 +77,15 @@ class DoctorRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function paginate($dql, $page = 1, $limit = 5)
+    {
+        $paginator = new Paginator($dql);
+
+        $paginator->getQuery()
+            ->setFirstResult($limit * ($page - 1)) // Offset
+            ->setMaxResults($limit); // Limit
+
+        return $paginator;
+    }
 }
