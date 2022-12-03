@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <title>{% block title %}System zarządzania{% endblock %}</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('/image/favicon.ico') }}">
-        <link rel="stylesheet" href="css/sb-admin-2.min.css">
-        <link href="css/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="  {{asset('css/sb-admin-2.min.css')}}">
+        <link href=" {{asset('css/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
         
 
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
@@ -28,21 +28,23 @@
 
     <!-- Bootstrap core JavaScript-->
 
-        <script src="js/vendor/jquery/jquery.min.js"></script>
-        <script src="js/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ asset('js/vendor/jquery/jquery.min.js') }}"></script>
+
+        <script src="{{ asset('js/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
         <!-- Core plugin JavaScript-->
-        <script src="js/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="{{ asset('js/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
         <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
+        <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
         <!-- Page level plugins -->
-        <script src="js/vendor/chart.js/Chart.min.js"></script>
+        <script src="{{ asset('js/vendor/chart.js/Chart.min.js') }}"></script>
 
         <!-- Page level custom scripts -->
-        <script src="js/demo/chart-area-demo.js"></script>
-        <script src="js/demo/chart-pie-demo.js"></script>
+        <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
+        
+        <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
 
     </body>
 </html>
