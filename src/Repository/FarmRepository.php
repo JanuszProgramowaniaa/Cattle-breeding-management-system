@@ -6,6 +6,7 @@ use App\Entity\Farm;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use App\Service\PaginatorService;
 
 /**
  * @extends ServiceEntityRepository<Farm>
@@ -17,9 +18,10 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  */
 class FarmRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, PaginatorService $Paginator)
     {
         parent::__construct($registry, Farm::class);
+        $this->Paginator = $Paginator;
     }
 
     public function save(Farm $entity, bool $flush = false): void
@@ -45,7 +47,7 @@ class FarmRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('f')
             ->getQuery();
             
-            $paginator = $this->paginate($query, $currentPage, $itemPerPage);
+            $paginator = $this->Paginator->paginate($query, $currentPage, $itemPerPage);
 
 
         return $paginator;
@@ -76,14 +78,5 @@ class FarmRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-    public function paginate($dql, $page = 1, $limit = 5)
-    {
-        $paginator = new Paginator($dql);
-
-        $paginator->getQuery()
-            ->setFirstResult($limit * ($page - 1)) // Offset
-            ->setMaxResults($limit); // Limit
-
-        return $paginator;
-    }
+  
 }

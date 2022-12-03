@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\Doctor;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\ORM\Tools\Pagination\Paginator;
+use App\Service\PaginatorService;
 
 /**
  * @extends ServiceEntityRepository<Doctor>
@@ -17,9 +17,10 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  */
 class DoctorRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, PaginatorService $Paginator)
     {
         parent::__construct($registry, Doctor::class);
+        $this->Paginator = $Paginator;
     }
 
     public function save(Doctor $entity, bool $flush = false): void
@@ -47,7 +48,7 @@ class DoctorRepository extends ServiceEntityRepository
             ->orderBy('d.name', 'DESC')
             ->getQuery();
         
-            $paginator = $this->paginate($query, $currentPage, $itemPerPage);
+            $paginator = $this->Paginator->paginate($query, $currentPage, $itemPerPage);
 
 
         return $paginator;
@@ -78,14 +79,5 @@ class DoctorRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-    public function paginate($dql, $page = 1, $limit = 5)
-    {
-        $paginator = new Paginator($dql);
 
-        $paginator->getQuery()
-            ->setFirstResult($limit * ($page - 1)) // Offset
-            ->setMaxResults($limit); // Limit
-
-        return $paginator;
-    }
 }
