@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Doctor;
+use Symfony\Component\Yaml\Yaml;
 
 
 class doctorController extends AbstractController
@@ -16,7 +17,8 @@ class doctorController extends AbstractController
 
     public function index(ManagerRegistry $doctrine, $page = 1): Response
     { 
-        $itemPerPage = 1;
+        $itemPerPage = Yaml::parseFile('../config/site/config.yaml')['DOCTORS_PER_PAGE'];
+
         $doctors = $doctrine->getRepository(Doctor::class)->getAllDoctors($page, $itemPerPage);
         $totalDoctors = count($doctors);
 
