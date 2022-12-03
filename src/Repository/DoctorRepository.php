@@ -50,7 +50,7 @@ class DoctorRepository extends ServiceEntityRepository
             $paginator = $this->paginate($query, $currentPage, $itemPerPage);
 
 
-        return $query->getResult();
+        return $paginator;
     }
 
 //    /**

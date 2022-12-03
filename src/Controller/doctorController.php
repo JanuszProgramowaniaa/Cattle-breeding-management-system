@@ -16,17 +16,15 @@ class doctorController extends AbstractController
 
     public function index(ManagerRegistry $doctrine, $page = 1): Response
     { 
-        $itemPerPage = 2;
+        $itemPerPage = 1;
         $doctors = $doctrine->getRepository(Doctor::class)->getAllDoctors($page, $itemPerPage);
         $totalDoctors = count($doctors);
 
-        $maxPages = ceil(5 / 2);
-
-        dd($maxPages);
+        $maxPages = ceil($totalDoctors / $itemPerPage);
 
         return $this->render('doctor/index.html.twig',[
             'doctors' => $doctors,
-            'totalDoctors' => $totalDoctors,
+            'totalItems' => $totalDoctors,
             'curentPage' => $page,
             'itemPerPage' => $itemPerPage,
             'maxPages' => $maxPages
