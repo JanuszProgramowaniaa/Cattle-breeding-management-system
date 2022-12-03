@@ -2,27 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\Doctor;
+use App\Entity\Farm;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
- * @extends ServiceEntityRepository<Doctor>
+ * @extends ServiceEntityRepository<Farm>
  *
- * @method Doctor|null find($id, $lockMode = null, $lockVersion = null)
- * @method Doctor|null findOneBy(array $criteria, array $orderBy = null)
- * @method Doctor[]    findAll()
- * @method Doctor[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Farm|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Farm|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Farm[]    findAll()
+ * @method Farm[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class DoctorRepository extends ServiceEntityRepository
+class FarmRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Doctor::class);
+        parent::__construct($registry, Farm::class);
     }
 
-    public function save(Doctor $entity, bool $flush = false): void
+    public function save(Farm $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -31,7 +31,7 @@ class DoctorRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Doctor $entity, bool $flush = false): void
+    public function remove(Farm $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,13 +40,11 @@ class DoctorRepository extends ServiceEntityRepository
         }
     }
 
-
-    public function getAllDoctors($currentPage = 1, $itemPerPage = 5)
+    public function getAllFarms($currentPage = 1, $itemPerPage = 5)
     {
-        $query = $this->createQueryBuilder('d')
-            ->orderBy('d.name', 'DESC')
+        $query = $this->createQueryBuilder('f')
             ->getQuery();
-        
+            
             $paginator = $this->paginate($query, $currentPage, $itemPerPage);
 
 
@@ -54,24 +52,24 @@ class DoctorRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Doctor[] Returns an array of Doctor objects
+//     * @return Farm[] Returns an array of Farm objects
 //     */
 //    public function findByExampleField($value): array
 //    {
-//        return $this->createQueryBuilder('d')
-//            ->andWhere('d.exampleField = :val')
+//        return $this->createQueryBuilder('f')
+//            ->andWhere('f.exampleField = :val')
 //            ->setParameter('val', $value)
-//            ->orderBy('d.id', 'ASC')
+//            ->orderBy('f.id', 'ASC')
 //            ->setMaxResults(10)
 //            ->getQuery()
 //            ->getResult()
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Doctor
+//    public function findOneBySomeField($value): ?Farm
 //    {
-//        return $this->createQueryBuilder('d')
-//            ->andWhere('d.exampleField = :val')
+//        return $this->createQueryBuilder('f')
+//            ->andWhere('f.exampleField = :val')
 //            ->setParameter('val', $value)
 //            ->getQuery()
 //            ->getOneOrNullResult()
