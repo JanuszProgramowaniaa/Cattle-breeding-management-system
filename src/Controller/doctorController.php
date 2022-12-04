@@ -10,7 +10,7 @@ use App\Entity\Doctor;
 use Symfony\Component\Yaml\Yaml;
 
 
-class doctorController extends AbstractController
+class DoctorController extends AbstractController
 {
     #[Route('/doctor/{page}', name: 'doctor')]
 

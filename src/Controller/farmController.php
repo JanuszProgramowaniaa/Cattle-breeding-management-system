@@ -10,7 +10,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Farm;
 
 
-class farmController extends AbstractController
+class FarmController extends AbstractController
 {
     #[Route('/farm/{page}', name: 'farm')]
 
